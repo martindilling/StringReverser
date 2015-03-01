@@ -7,48 +7,47 @@ class WordReverserTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function given_an_empty_string()
     {
-        $reverser = new WordReverser();
+        $string = '';
+        $expect = '';
 
-        $this->assertEquals('', $reverser->reverse(''));
+        $this->assertReversing($expect, $string);
     }
 
     /** @test */
-    public function given_single_character()
+    public function given_word()
     {
-        $reverser = new WordReverser();
+        $string = 'hello';
+        $expect = 'olleh';
 
-        $this->assertEquals('a', $reverser->reverse('a'));
-    }
-
-    /** @test */
-    public function given_two_character_string()
-    {
-        $reverser = new WordReverser();
-
-        $this->assertEquals('ba', $reverser->reverse('ab'));
-    }
-
-    /** @test */
-    public function given_three_character_string()
-    {
-        $reverser = new WordReverser();
-
-        $this->assertEquals('cba', $reverser->reverse('abc'));
+        $this->assertReversing($expect, $string);
     }
 
     /** @test */
     public function given_two_words()
     {
-        $reverser = new WordReverser();
+        $string = 'hello world';
+        $expect = 'olleh dlrow';
 
-        $this->assertEquals('ba dc', $reverser->reverse('ab cd'));
+        $this->assertReversing($expect, $string);
     }
 
     /** @test */
     public function given_many_words()
     {
+        $string = 'hello world! How are you doing today?';
+        $expect = 'olleh !dlrow woH era uoy gniod ?yadot';
+
+        $this->assertReversing($expect, $string);
+    }
+
+    /**
+     * @param string $expect
+     * @param string $string
+     */
+    protected function assertReversing($expect, $string)
+    {
         $reverser = new WordReverser();
 
-        $this->assertEquals('olleh !dlrow woH era uoy gniod ?yadot', $reverser->reverse('hello world! How are you doing today?'));
+        $this->assertEquals($expect, $reverser->reverse($string));
     }
 }
