@@ -10,6 +10,13 @@ Run the example with:
 php reverser.php
 ````
 
+Output:
+
+````
+Reversing string: hello world
+Result:           olleh dlrow
+````
+
 ## Tests
 
 Unit tests is found in the `tests` folder.
